@@ -2,6 +2,7 @@ module org.vinyes.asistencia {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.smartcardio;
+    requires java.sql;
 
 
     opens org.vinyes.asistencia to javafx.fxml;
