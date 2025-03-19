@@ -1,5 +1,7 @@
 package org.vinyes.asistencia.NFCDriver;
 
+import org.vinyes.asistencia.Database.RegistroDAO;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,25 +13,28 @@ public class DatabaseWriter {
     }
 
     public void escribirNuevaLinea(String csv) {
-        // procesa los datos hacia la csv;
-        // uid, name, time, status
         String[] csvList = csv.split(",");
-        String info = "Profesor: " + csvList[1] + " ha " + (csvList[3].equals("true") ? "entrado" : "salido")  + " a las " + csvList[2] + ", con identificador: " + csvList[0];
-        File file = new File("fichaje.txt");
-        try (FileWriter fw = new FileWriter(file, true)) {  // Modo append
-            fw.write(info + "\n");  // Escribe la línea en el archivo
-        } catch (IOException e) {
-            throw new RuntimeException("Error al escribir en el archivo", e);
-        }
+        String uid = csvList[0];
+        String nombre = csvList[1];
+        String fecha = csvList[2];
+        String tipo = csvList[3].equals("true") ? "entrada" : "salida";
 
-        // porque arrays to string es ASFDSADFDSAFASDF
-        String formatoArray = csvList[0] + "," + csvList[1] + "," + csvList[2] + "," + csvList[3];
+        // Escribir en archivo de texto
+        escribirEnArchivo("fichaje.txt", "Profesor: " + nombre + " ha " + tipo + " a las " + fecha + ", con identificador: " + uid);
 
-        File csvFile = new File("database.csv");
-        try (FileWriter csvfw = new FileWriter(csvFile, true)) {  // Modo append
-            csvfw.write( formatoArray + "\n");  // Escribe la línea en el archivo
+        // Escribir en CSV
+        escribirEnArchivo("database.csv", String.join(",", uid, nombre, fecha, tipo));
+
+        // Insertar en la base de datos
+        RegistroDAO.insertarRegistro(uid, fecha, tipo);
+    }
+
+    private void escribirEnArchivo(String ruta, String contenido) {
+        File file = new File(ruta);
+        try (FileWriter fw = new FileWriter(file, true)) {
+            fw.write(contenido + "\n");
         } catch (IOException e) {
-            throw new RuntimeException("Error al escribir en el archivo", e);
+            throw new RuntimeException("Error al escribir en " + ruta, e);
         }
     }
 }
