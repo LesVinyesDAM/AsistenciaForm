@@ -20,22 +20,6 @@ import java.util.Random;
 
 public class FirstScreenController {
 
-    // que feo pero bueno
-    static public Map<String, String> usuarios = new HashMap<>();
-
-    // manual map
-    static {
-        usuarios.put("438B5A40", "JT");
-        usuarios.put("D3F5AC40", "Alex");
-        usuarios.put("0E22011E", "JT");
-        usuarios.put("4B59001E", "Thomas");
-        usuarios.put("5A1C011E", "Alex");
-        usuarios.put("F043001E", "Sancho");
-        usuarios.put("CA58001E", "S4QU3NM3D34QU1");
-        usuarios.put("C5FF9DBB", "ÎLE-DE-FRANCE"); // tarjeta de prueba
-        usuarios.put("04328042C96880", "CRTM MADRID"); // tarjeta de prueba
-    }
-
     @FXML
     private Label onUpdateText;
 
@@ -43,10 +27,10 @@ public class FirstScreenController {
 
     @FXML
     public void initialize() {
-        // mira si se puede instanciar el NFCReader primero!
+        // mira si se puede instanciar el NFCReader primero
         NFCReader nfcReader = new NFCReader();
-        nfcReader.iniciarTerminal(usuarios);
-        readCards();
+        onUpdateText.textProperty().bind(nfcReader.cardInfoProperty());
+        nfcReader.iniciarLectura();
     }
 
     protected int v = 0;
