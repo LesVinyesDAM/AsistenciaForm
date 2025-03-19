@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
 
-<?import javafx.scene.control.Label?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.vinyes.asistencia.Controllers.UsuariosScreenController"
             prefHeight="400.0" prefWidth="600.0">
-    <Label fx:id="label1">
-        Aqui se van a mostrar todos los registros realizados...
-    </Label>
+
+    <Label layoutX="20.0" layoutY="20.0" text="Registros realizados:" />
+
+    <TextArea fx:id="textAreaRegistros" layoutX="20.0" layoutY="50.0" prefWidth="560.0" prefHeight="300.0"
+              editable="false" wrapText="true"/>
 </AnchorPane>

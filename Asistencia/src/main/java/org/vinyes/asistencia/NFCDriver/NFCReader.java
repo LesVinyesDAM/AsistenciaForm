@@ -5,15 +5,20 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import javax.smartcardio.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class NFCReader {
     private static final String EXPECTED_MODEL = "ACS ACR122 0";
     private final StringProperty cardInfo = new SimpleStringProperty("Esperando tarjeta...");
+    private volatile boolean keepRunning = true;  // Flag para controlar el hilo
 
     public StringProperty cardInfoProperty() {
         return cardInfo;
     }
+
+    DatabaseWriter dw = new DatabaseWriter();
 
     private final byte[] ISOCMD = {
             (byte) 0xFF,
@@ -25,24 +30,26 @@ public class NFCReader {
 
     public void iniciarLectura() {
         new Thread(() -> {
-            while (true) {  // Keep running indefinitely
+            while (keepRunning) {
                 Card tarjeta = null;
                 try {
                     TerminalFactory factory = TerminalFactory.getDefault();
                     CardTerminals lectores = factory.terminals();
                     List<CardTerminal> terminales = lectores.list();
 
-                    // esto casi que es boilerplate...
                     if (terminales.isEmpty()) {
                         Platform.runLater(() -> cardInfo.set("No hay lectores disponibles."));
                         Thread.sleep(1000);
                         continue;
                     }
 
-                    CardTerminal lector = terminales.get(0);  // Obtener el primer lector disponible
+                    CardTerminal lector = terminales.get(0);
                     Platform.runLater(() -> cardInfo.set("Esperando tarjeta..."));
 
-                    lector.waitForCardPresent(0);
+                    if (!lector.waitForCardPresent(1000)) {
+                        continue;  // Si no hay tarjeta, vuelve a empezar el loop
+                    }
+
                     tarjeta = lector.connect("*");
                     CardChannel canal = tarjeta.getBasicChannel();
                     CommandAPDU apdu = new CommandAPDU(ISOCMD);
@@ -55,7 +62,11 @@ public class NFCReader {
                         if (SUID.isEmpty()) {
                             cardInfo.set("Error al leer la tarjeta.");
                         } else {
+                            Date date = new Date();
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
                             cardInfo.set("Tarjeta detectada: " + SUID);
+                            dw.escribirNuevaLinea(SUID + ",TESTUSER" + "," + sdf.format(date) + ",true");
                         }
                     });
 
@@ -70,12 +81,15 @@ public class NFCReader {
                     if (tarjeta != null) {
                         try {
                             tarjeta.disconnect(false);
-                        } catch (CardException ignored) {
-                        }
+                        } catch (CardException ignored) {}
                     }
                 }
             }
         }).start();
+    }
+
+    public void detenerLectura() {
+        keepRunning = false;
     }
 
     private static String bytesToHex(byte[] bytes) {
