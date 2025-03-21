@@ -1,7 +1,14 @@
 package org.vinyes.asistencia.Controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -13,8 +20,12 @@ public class UsuariosScreenController {
     public TextArea textAreaRegistros;
 
     @FXML
-    public void setupTextbox(String texto) {
+    public void initialize() {
         leerArchivo("C:\\Users\\JT\\Documents\\GitHub\\Asistencia\\AsistenciaForm\\Asistencia\\fichaje.txt");
+    }
+
+    @FXML
+    public void setupTextbox(String texto) {
         textAreaRegistros.appendText(texto + "\n");
     }
 
@@ -28,5 +39,14 @@ public class UsuariosScreenController {
         } catch (IOException e) {
             setupTextbox("No se pudo leer el archivo. Error: " + e.getMessage());
         }
+    }
+
+    public void handleGestionarUsuarios(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/vinyes/asistencia/register-screen.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Gestion usuarios");
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 }

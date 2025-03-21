@@ -12,7 +12,7 @@ import java.util.List;
 public class NFCReader {
     private static final String EXPECTED_MODEL = "ACS ACR122 0";
     private final StringProperty cardInfo = new SimpleStringProperty("Esperando tarjeta...");
-    private volatile boolean keepRunning = true;  // Flag para controlar el hilo
+    private volatile boolean keepRunning = true;  // flag para controlar el hilo
 
     public StringProperty cardInfoProperty() {
         return cardInfo;
@@ -28,7 +28,7 @@ public class NFCReader {
             0x00
     };
 
-    public void iniciarLectura() {
+    public void iniciarLectura(boolean isRegistering) {
         new Thread(() -> {
             while (keepRunning) {
                 Card tarjeta = null;
@@ -47,7 +47,7 @@ public class NFCReader {
                     Platform.runLater(() -> cardInfo.set("Esperando tarjeta..."));
 
                     if (!lector.waitForCardPresent(1000)) {
-                        continue;  // Si no hay tarjeta, vuelve a empezar el loop
+                        continue;  // si no hay tarjeta, vuelve a empezar el loop
                     }
 
                     tarjeta = lector.connect("*");
@@ -65,8 +65,15 @@ public class NFCReader {
                             Date date = new Date();
                             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-                            cardInfo.set("Tarjeta detectada: " + SUID);
-                            dw.escribirNuevaLinea(SUID + ",TESTUSER" + "," + sdf.format(date) + ",true");
+                            if (isRegistering) {
+                                // no escribas el csv y mata el thread
+                                keepRunning = false;
+                                cardInfo.set(SUID);
+                            } else {
+                                cardInfo.set("Tarjeta detectada: " + SUID);
+                                String csv = SUID + ",TESTUSER" + "," + sdf.format(date) + ",true";
+                                dw.escribirNuevaLinea(csv);
+                            }
                         }
                     });
 
@@ -81,7 +88,9 @@ public class NFCReader {
                     if (tarjeta != null) {
                         try {
                             tarjeta.disconnect(false);
-                        } catch (CardException ignored) {}
+                        } catch (CardException ex) {
+                            Platform.runLater(() -> cardInfo.set("Error during disconnect: " + ex.getMessage()));
+                        }
                     }
                 }
             }

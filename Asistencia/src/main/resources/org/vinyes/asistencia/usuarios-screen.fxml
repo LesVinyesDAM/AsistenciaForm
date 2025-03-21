@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 
@@ -8,8 +7,14 @@
             fx:controller="org.vinyes.asistencia.Controllers.UsuariosScreenController"
             prefHeight="400.0" prefWidth="600.0">
 
-    <Label layoutX="20.0" layoutY="20.0" text="Registros realizados:" />
+    <MenuBar AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+        <Menu text="Gestión">
+            <MenuItem text="Gestionar Usuarios" onAction="#handleGestionarUsuarios"/>
+        </Menu>
+    </MenuBar>
 
-    <TextArea fx:id="textAreaRegistros" layoutX="20.0" layoutY="50.0" prefWidth="560.0" prefHeight="300.0"
+    <Label layoutX="20.0" layoutY="60.0" text="Registros realizados:" />
+    <TextArea fx:id="textAreaRegistros" layoutX="20.0" layoutY="90.0" prefWidth="560.0" prefHeight="300.0"
               editable="false" wrapText="true"/>
+
 </AnchorPane>

@@ -23,14 +23,12 @@ public class FirstScreenController {
     @FXML
     private Label onUpdateText;
 
-    private final Random random = new Random();
-
     @FXML
     public void initialize() {
         // mira si se puede instanciar el NFCReader primero
         NFCReader nfcReader = new NFCReader();
         onUpdateText.textProperty().bind(nfcReader.cardInfoProperty());
-        nfcReader.iniciarLectura();
+        nfcReader.iniciarLectura(false);
     }
 
     protected int v = 0;
@@ -62,5 +60,6 @@ public class FirstScreenController {
     }
 
     public void onExportCSV(ActionEvent actionEvent) {
+
     }
 }

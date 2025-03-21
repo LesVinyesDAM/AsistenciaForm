@@ -15,7 +15,6 @@
     <top>
         <MenuBar>
             <Menu text="Opciones">
-                <MenuItem text="Exportar CSV ahora" onAction="#onExportCSV"/>
                 <MenuItem text="Administrar usuarios" onAction="#onManageUsers"/>
             </Menu>
         </MenuBar>
