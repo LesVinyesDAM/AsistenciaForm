@@ -71,7 +71,7 @@ public class NFCReader {
                                 cardInfo.set(SUID);
                             } else {
                                 cardInfo.set("Tarjeta detectada: " + SUID);
-                                String csv = SUID + ",TESTUSER" + "," + sdf.format(date) + ",true";
+                                String csv = SUID + ",Usuario sin identificar" + "," + sdf.format(date) + ",true";
                                 dw.escribirNuevaLinea(csv);
                             }
                         }
