@@ -37,7 +37,8 @@ public class UsuariosScreenController {
                 setupTextbox(linea);
             }
         } catch (IOException e) {
-            setupTextbox("No se pudo leer el archivo. Error: " + e.getMessage());
+            setupTextbox("No se pudo leer el archivo.");
+            System.out.print("Error: " + e.getMessage());
         }
     }
 
