@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 public class RegistroDAO {
     public static void insertarRegistro(String uid, String fecha, String tipo) {
+        System.out.println("Registro esto: " + uid + ","+fecha+","+tipo);
         String sql = "INSERT INTO registro (uid, fecha, tipo) VALUES (?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

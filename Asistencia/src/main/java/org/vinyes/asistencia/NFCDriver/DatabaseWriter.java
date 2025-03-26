@@ -25,6 +25,8 @@ public class DatabaseWriter {
         // Escribir en CSV
         escribirEnArchivo("database.csv", String.join(",", uid, nombre, fecha, tipo));
 
+        System.out.println("Registro cosas");
+
         // Insertar en la base de datos
         RegistroDAO.insertarRegistro(uid, fecha, tipo);
     }
