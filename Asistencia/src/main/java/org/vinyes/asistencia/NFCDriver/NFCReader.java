@@ -3,6 +3,8 @@ package org.vinyes.asistencia.NFCDriver;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import org.vinyes.asistencia.Database.RegistroDAO;
+import org.vinyes.asistencia.Entities.Usuario;
 
 import javax.smartcardio.*;
 import java.text.SimpleDateFormat;
@@ -62,6 +64,8 @@ public class NFCReader {
                         if (SUID.isEmpty()) {
                             cardInfo.set("Error al leer la tarjeta.");
                         } else {
+                            Usuario user = RegistroDAO.obtenerUsuarioPorSUID(SUID);
+
                             Date date = new Date();
                             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -70,12 +74,14 @@ public class NFCReader {
                                 keepRunning = false;
                                 cardInfo.set(SUID);
                             } else {
-                                cardInfo.set("Tarjeta detectada: " + SUID);
-                                String csv = SUID + ",Usuario sin identificar" + "," + sdf.format(date) + ",true";
+                                cardInfo.set("Fichaje de " + (user.isFichado() ? "salida" : "entrada") + ": " + user.getNombreCompleto() + " del departament: " + user.getDepartamento() +
+                                        "A las: " + sdf.format(date));
+                                String csv = SUID + "," + user.getNombreCompleto() + "," + sdf.format(date) + ",true";
                                 dw.escribirNuevaLinea(csv);
                             }
                         }
                     });
+
 
                     tarjeta.disconnect(false);
                     lector.waitForCardAbsent(0);
