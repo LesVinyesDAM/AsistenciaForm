@@ -75,9 +75,9 @@ public class NFCReader {
                                 cardInfo.set(SUID);
                             } else {
                                 cardInfo.set("Fichaje de " + (user.isFichado() ? "salida" : "entrada") + ": " + user.getNombreCompleto() + " del departament: " + user.getDepartamento() +
-                                        "A las: " + sdf.format(date));
+                                        "\nA las: " + sdf.format(date));
                                 String csv = SUID + "," + user.getNombreCompleto() + "," + sdf.format(date) + ",true";
-                                dw.escribirNuevaLinea(csv);
+                                dw.escribirNuevaLinea(csv); // se escribe a la bbdd
                             }
                         }
                     });

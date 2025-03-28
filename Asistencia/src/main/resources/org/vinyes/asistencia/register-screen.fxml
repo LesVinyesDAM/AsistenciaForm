@@ -8,6 +8,6 @@
     <TextField fx:id="nameField" promptText="Nombre/s" layoutX="20" layoutY="70" prefWidth="200"/>
     <TextField fx:id="surnameField" promptText="Apellido/s" layoutX="20" layoutY="120" prefWidth="200"/>
     <TextField fx:id="departmentField" promptText="Departmento" layoutX="20" layoutY="170" prefWidth="200"/>
-    <Button text="Cancelar" fx:id="cancelButton" layoutX="120" layoutY="220" onAction="#handleCancel"/>
+    <Button text="Cerrar" fx:id="cerrarButton" layoutX="120" layoutY="220" onAction="#handleCerrar"/>
     <Button text="Registrar" fx:id="registerButton" layoutX="20" layoutY="220" onAction="#handleRegister"/>
 </AnchorPane>

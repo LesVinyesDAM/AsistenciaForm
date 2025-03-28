@@ -9,7 +9,8 @@
 
     <MenuBar AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
         <Menu text="Gestión">
-            <MenuItem text="Gestionar Usuarios" onAction="#handleGestionarUsuarios"/>
+            <MenuItem text="Registrar usuarios" onAction="#handleRegistrarUsuarios"/>
+            <MenuItem text="Modificar usuarios" onAction="#handleModificarUsuarios"/>
         </Menu>
     </MenuBar>
 

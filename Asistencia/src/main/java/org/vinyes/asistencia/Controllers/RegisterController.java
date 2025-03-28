@@ -1,21 +1,22 @@
 package org.vinyes.asistencia.Controllers;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.util.Duration;
+import javafx.stage.Stage;
+import org.vinyes.asistencia.Database.RegistroDAO;
+import org.vinyes.asistencia.Entities.Usuario;
 import org.vinyes.asistencia.NFCDriver.NFCReader;
 
 public class RegisterController {
-    public TextField onPassCardNfc;
-    public TextField nameField;
-    public TextField surnameField;
-    public TextField departmentField;
-    public Button cancelButton;
-    public Button registerButton;
+    @FXML private TextField onPassCardNfc;
+    @FXML private TextField nameField;
+    @FXML private TextField surnameField;
+    @FXML private TextField departmentField;
+    @FXML private Button cerrarButton;
+    @FXML private Button registerButton;
 
     @FXML
     public void initialize() {
@@ -24,11 +25,37 @@ public class RegisterController {
         nfcReader.iniciarLectura(true);
     }
 
-    public void handleCancel(ActionEvent actionEvent) {
-
+    public void handleCerrar(ActionEvent actionEvent) {
+        // cerramos el stage
+        Stage stg = (Stage)(cerrarButton.getScene().getWindow()); // kinda lame ngl
+        stg.close(); // cierra el form al presionar cancelar, y sigue su curso.
     }
 
     public void handleRegister(ActionEvent actionEvent) {
+        String uuid = onPassCardNfc.getText().trim();
+        String nombre = nameField.getText().trim() + " " + surnameField.getText().trim();
+        String departamento = departmentField.getText().trim();
 
+        if (!uuid.isEmpty() && !nombre.isEmpty() && !departamento.isEmpty()) {
+            if (RegistroDAO.existeUsuario(uuid)) {
+                textboxHelper("Registro", "La tarjeta ya está registrada.", Alert.AlertType.ERROR);
+            } else {
+                Usuario nuevoUsuario = new Usuario(uuid, nombre, departamento);
+                RegistroDAO.registrarUsuarioEnBD(nuevoUsuario);
+                textboxHelper("Registro", "Registro exitoso!", Alert.AlertType.CONFIRMATION);
+            }
+        } else {
+            textboxHelper("Registro", "Todos los campos son obligatorios.", Alert.AlertType.WARNING);
+        }
+    }
+
+
+    public void textboxHelper(String title, String content, Alert.AlertType alertType) {
+        // tira una alerta si la contraseña y el usuario esta mal
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 }

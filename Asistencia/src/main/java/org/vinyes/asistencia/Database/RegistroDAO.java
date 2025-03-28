@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RegistroDAO {
     private static Usuario noUser = new Usuario(null, "Usuario sin identificar", null);
@@ -60,4 +62,86 @@ public class RegistroDAO {
         }
         return false; // Si no hay registros, se asume que no está fichado
     }
+
+    public static void registrarUsuarioEnBD(Usuario usuario) {
+        String sql = "INSERT INTO usuario (uid, nombre, departamento) VALUES (?, ?, ?)";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, usuario.getUuid());
+            pstmt.setString(2, usuario.getNombreCompleto());
+            pstmt.setString(3, usuario.getDepartamento());
+
+            pstmt.executeUpdate();
+            System.out.println("Usuario registrado exitosamente: " + usuario.getNombreCompleto());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static List<Usuario> obtenerTodosLosUsuarios() {
+        List<Usuario> usuarios = new ArrayList<>();
+        String sql = "SELECT uid, nombre, departamento FROM usuario";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                usuarios.add(new Usuario(rs.getString("uid"), rs.getString("nombre"), rs.getString("departamento")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return usuarios;
+    }
+
+    public static boolean existeUsuario(String uuid) {
+        String sql = "SELECT COUNT(*) FROM usuario WHERE uid = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, uuid);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0; // si existe en la bd
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
+    public static void eliminarUsuario(String uuid) {
+        String sql = "DELETE FROM usuario WHERE uid = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, uuid);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void actualizarUsuario(String uuid, String nuevoNombre, String nuevoDepartamento) {
+        String sql = "UPDATE usuario SET nombre = ?, departamento = ? WHERE uid = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, nuevoNombre);
+            pstmt.setString(2, nuevoDepartamento);
+            pstmt.setString(3, uuid);
+            pstmt.executeUpdate();
+            System.out.println("Usuario actualizado en la base de datos.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

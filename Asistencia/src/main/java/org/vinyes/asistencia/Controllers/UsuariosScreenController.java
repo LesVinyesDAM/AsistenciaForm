@@ -5,9 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -42,8 +40,17 @@ public class UsuariosScreenController {
         }
     }
 
-    public void handleGestionarUsuarios(ActionEvent actionEvent) throws IOException {
+    public void handleRegistrarUsuarios(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/vinyes/asistencia/register-screen.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Gestion usuarios");
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    public void handleModificarUsuarios(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/vinyes/asistencia/gestion-screen.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setTitle("Gestion usuarios");
