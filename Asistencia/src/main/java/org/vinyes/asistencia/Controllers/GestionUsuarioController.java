@@ -99,11 +99,16 @@ public class GestionUsuarioController {
     }
 
     public void handleVerUsuario(ActionEvent actionEvent) {
+        Usuario seleccionado = tablaUsuarios.getSelectionModel().getSelectedItem();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/vinyes/asistencia/m-registros-screen.fxml"));
             Parent root = loader.load();
+
+            MRegistrosController controller = loader.getController();
+            controller.cargarRegistrosUsuario(seleccionado.getUuid());
+
             Stage stage = new Stage();
-            stage.setTitle("Registro del usuario");
+            stage.setTitle("Registros de " + seleccionado.getNombreCompleto());
             stage.setScene(new Scene(root));
             stage.show();
 
