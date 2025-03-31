@@ -74,9 +74,11 @@ public class NFCReader {
                                 keepRunning = false;
                                 cardInfo.set(SUID);
                             } else {
-                                cardInfo.set("Fichaje de " + (user.isFichado() ? "salida" : "entrada") + ": " + user.getNombreCompleto() + " del departament: " + user.getDepartamento() +
+                                System.out.println("Esta el usuario fichado? - " + user.isFichado());
+                                user.setFichado(!user.isFichado());
+                                cardInfo.set("Fichaje de " + (user.isFichado() ? "entrada" : "salida") + ": " + user.getNombreCompleto() + " del departament: " + user.getDepartamento() +
                                         "\nA las: " + sdf.format(date));
-                                String csv = SUID + "," + user.getNombreCompleto() + "," + sdf.format(date) + ",true";
+                                String csv = SUID + "," + user.getNombreCompleto() + "," + sdf.format(date) + ","+ user.isFichado();
                                 dw.escribirNuevaLinea(csv); // se escribe a la bbdd
                             }
                         }
@@ -86,7 +88,7 @@ public class NFCReader {
                     tarjeta.disconnect(false);
                     lector.waitForCardAbsent(0);
                 } catch (Exception e) {
-                    Platform.runLater(() -> cardInfo.set("Error: " + e.getMessage()));
+                    Platform.runLater(() -> cardInfo.set("Lector no encontrado."));
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException ignored) {}
