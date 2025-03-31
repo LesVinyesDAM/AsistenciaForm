@@ -1,5 +1,7 @@
 package org.vinyes.asistencia.Database;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.vinyes.asistencia.Entities.Usuario;
 
 import java.sql.Connection;
@@ -144,4 +146,26 @@ public class RegistroDAO {
         }
     }
 
+    // observa
+    public static ObservableList<String> obtenerRegistrosPorUsuario(String uuid) {
+        ObservableList<String> registros = FXCollections.observableArrayList();
+        String sql = "SELECT fecha, tipo FROM registro WHERE uid = ? ORDER BY fecha ASC";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, uuid);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                String fecha = rs.getString("fecha");
+                String tipo = rs.getString("tipo");
+                registros.add(fecha + " - " + tipo);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return registros;
+    }
 }

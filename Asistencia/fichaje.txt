@@ -5,3 +5,8 @@ Profesor: Thomas D ha salida a las 2025-03-31 10:26:17, con identificador: B3765
 Profesor: Thomas D ha entrada a las 2025-03-31 10:26:25, con identificador: B3765140
 Profesor: Thomas D ha salida a las 2025-03-31 10:26:27, con identificador: B3765140
 Profesor: Alex Martin ha salida a las 2025-03-31 10:49:19, con identificador: 53004D40
+Profesor: John Doe ha salida a las 2025-03-31 11:15:30, con identificador: B3010840
+Profesor: Usuario sin identificar ha entrada a las 2025-03-31 11:56:01, con identificador: 93176A40
+Profesor: Usuario sin identificar ha salida a las 2025-03-31 11:57:24, con identificador: 93176A40
+Profesor: Prueba0 Test ha entrada a las 2025-03-31 11:57:43, con identificador: 93176A40
+Profesor: Prueba0 Test ha salida a las 2025-03-31 11:57:46, con identificador: 93176A40

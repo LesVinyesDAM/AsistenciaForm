@@ -23,6 +23,7 @@
             <HBox spacing="10">
                 <Button fx:id="btnEliminar" text="Eliminar Usuario" onAction="#handleEliminarUsuario" />
                 <Button fx:id="btnModificar" text="Modificar Usuario" onAction="#handleModificarUsuario" />
+                <Button fx:id="btnVerRegistros" text="Ver registros" onAction="#handleVerUsuario" disable="true"/>
             </HBox>
         </VBox>
     </children>

@@ -5,9 +5,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.vinyes.asistencia.Database.RegistroDAO;
 import org.vinyes.asistencia.Entities.Usuario;
+
+import java.io.IOException;
 
 public class GestionUsuarioController {
 
@@ -17,6 +24,7 @@ public class GestionUsuarioController {
     @FXML private TableColumn<Usuario, String> colDepartamento;
     @FXML private TextField txtNombre;
     @FXML private TextField txtDepartamento;
+    @FXML private Button btnVerRegistros;
     @FXML private Button btnEliminar;
     @FXML private Button btnModificar;
 
@@ -35,6 +43,9 @@ public class GestionUsuarioController {
             if (newSelection != null) {
                 txtNombre.setText(newSelection.getNombreCompleto());
                 txtDepartamento.setText(newSelection.getDepartamento());
+                btnVerRegistros.setDisable(false);  // habilitar
+            } else {
+                btnVerRegistros.setDisable(true);  // deshabilitar
             }
         });
     }
@@ -84,6 +95,20 @@ public class GestionUsuarioController {
         } else {
             Alert alerta = new Alert(Alert.AlertType.WARNING, "Selecciona un usuario para modificar.");
             alerta.show();
+        }
+    }
+
+    public void handleVerUsuario(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/vinyes/asistencia/m-registros-screen.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Registro del usuario");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
