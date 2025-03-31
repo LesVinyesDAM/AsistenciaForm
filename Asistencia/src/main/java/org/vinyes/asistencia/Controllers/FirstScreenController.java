@@ -14,9 +14,6 @@ import javafx.util.Duration;
 import org.vinyes.asistencia.NFCDriver.NFCReader;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
 
 public class FirstScreenController {
 
