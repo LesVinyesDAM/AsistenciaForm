@@ -11,6 +11,7 @@
         <Menu text="Gestión">
             <MenuItem text="Registrar usuarios" onAction="#handleRegistrarUsuarios"/>
             <MenuItem text="Modificar usuarios" onAction="#handleModificarUsuarios"/>
+            <MenuItem text="Exportar CSV" onAction="#handleExportarCSV"/>
         </Menu>
     </MenuBar>
 

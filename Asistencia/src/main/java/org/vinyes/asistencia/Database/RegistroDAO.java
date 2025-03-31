@@ -4,6 +4,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.vinyes.asistencia.Entities.Usuario;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -167,5 +170,38 @@ public class RegistroDAO {
         }
 
         return registros;
+    }
+
+    public static void exportarDatosA_CSV(File archivo) {
+        String sql = """
+                    SELECT u.id AS id_usuario, u.uid, u.nombre, u.departamento,
+                           r.id AS id_registro, r.fecha, r.tipo
+                    FROM usuario u
+                    LEFT JOIN registro r ON u.uid = r.uid
+                    ORDER BY u.id, r.fecha;
+                """;
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery();
+             FileWriter writer = new FileWriter(archivo)) {
+
+            writer.append("id_usuario,uid,nombre,departamento,id_registro,fecha,tipo\n");
+
+            // Escribir filas de datos
+            while (rs.next()) {
+                writer.append(rs.getInt("id_usuario") + ",")
+                        .append(rs.getString("uid") + ",")
+                        .append(rs.getString("nombre") + ",")
+                        .append(rs.getString("departamento") + ",")
+                        .append(rs.getString("id_registro") + ",")
+                        .append(rs.getString("fecha") + ",")
+                        .append(rs.getString("tipo") + "\n");
+            }
+
+            System.out.println("Exportación completada: " + archivo.getAbsolutePath());
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
     }
 }

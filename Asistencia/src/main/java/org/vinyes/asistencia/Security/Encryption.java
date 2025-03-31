@@ -48,10 +48,4 @@ public class Encryption {
 
         return decryptedUser.equals(inputUser) && decryptedPass.equals(inputPass);
     }
-
-    /*
-        administrador
-        lesVinyes1234#
-     */
-
 }

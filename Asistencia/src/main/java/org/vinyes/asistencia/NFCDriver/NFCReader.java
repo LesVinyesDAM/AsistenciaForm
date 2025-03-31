@@ -13,7 +13,7 @@ import java.util.List;
 
 public class NFCReader {
     private static final String EXPECTED_MODEL = "ACS ACR122 0";
-    private final StringProperty cardInfo = new SimpleStringProperty("Esperando tarjeta...");
+    private final StringProperty cardInfo = new SimpleStringProperty("Esperando llavero/tarjeta...");
     private volatile boolean keepRunning = true;  // flag para controlar el hilo
 
     public StringProperty cardInfoProperty() {
@@ -46,7 +46,7 @@ public class NFCReader {
                     }
 
                     CardTerminal lector = terminales.get(0);
-                    Platform.runLater(() -> cardInfo.set("Esperando tarjeta..."));
+                    Platform.runLater(() -> cardInfo.set("Esperando llavero/tarjeta..."));
 
                     if (!lector.waitForCardPresent(1000)) {
                         continue;  // si no hay tarjeta, vuelve a empezar el loop
@@ -62,7 +62,7 @@ public class NFCReader {
 
                     Platform.runLater(() -> {
                         if (SUID.isEmpty()) {
-                            cardInfo.set("Error al leer la tarjeta.");
+                            cardInfo.set("Error al leer el llavero/tarjeta.");
                         } else {
                             Usuario user = RegistroDAO.obtenerUsuarioPorSUID(SUID);
 
@@ -88,7 +88,7 @@ public class NFCReader {
                     tarjeta.disconnect(false);
                     lector.waitForCardAbsent(0);
                 } catch (Exception e) {
-                    Platform.runLater(() -> cardInfo.set("Lector no encontrado."));
+                    Platform.runLater(() -> cardInfo.set("Lector no encontrado, conecte uno."));
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException ignored) {}

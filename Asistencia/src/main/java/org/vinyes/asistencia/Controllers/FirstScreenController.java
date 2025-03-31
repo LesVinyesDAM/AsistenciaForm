@@ -55,8 +55,4 @@ public class FirstScreenController {
             e.printStackTrace();
         }
     }
-
-    public void onExportCSV(ActionEvent actionEvent) {
-
-    }
 }
