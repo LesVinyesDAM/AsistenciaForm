@@ -43,3 +43,5 @@ Profesor: Usuario sin identificar ha salida a las 2025-03-31 12:32:05, con ident
 Profesor: Usuario sin identificar ha entrada a las 2025-03-31 12:32:06, con identificador: B3010840
 Profesor: John Doe ha salida a las 2025-03-31 12:32:38, con identificador: B3010840
 Profesor: John Doe ha entrada a las 2025-03-31 12:32:45, con identificador: B3010840
+Profesor: John Doe ha salida a las 2025-04-04 11:05:20, con identificador: B3010840
+Profesor: Joaquin Perez ha entrada a las 2025-04-04 11:13:52, con identificador: 13A66940
