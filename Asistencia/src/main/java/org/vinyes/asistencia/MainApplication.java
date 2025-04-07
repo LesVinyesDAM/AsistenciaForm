@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.vinyes.asistencia.NFCDriver.NFCReader;
+import org.vinyes.asistencia.NFCDriver.RegistroScheduler;
 
 import java.awt.*;
 import java.io.IOException;
@@ -25,6 +26,8 @@ public class MainApplication extends Application {
         stage.setHeight(pantalla.getHeight());
         stage.setScene(scene);
         stage.show();
+
+        RegistroScheduler.iniciarTareaCorreccionDiaria(); // ten ese runnable ahi
 
         // mata la app entera si el mainstage se cierra
         stage.setOnCloseRequest(event -> {

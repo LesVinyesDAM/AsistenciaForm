@@ -7,10 +7,8 @@ import org.vinyes.asistencia.Entities.Usuario;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -201,6 +199,53 @@ public class RegistroDAO {
 
             System.out.println("Exportació completada: " + archivo.getAbsolutePath());
         } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void corregirFichajesOlvidados() {
+        String sqlUsuariosConEntrada = """
+        SELECT r.uid, MAX(r.fecha) as ultima_fecha
+        FROM registro r
+        WHERE r.tipo = 'entrada'
+        AND NOT EXISTS (
+            SELECT 1 FROM registro r2
+            WHERE r2.uid = r.uid
+            AND r2.fecha > r.fecha
+        )
+        GROUP BY r.uid
+        """;
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sqlUsuariosConEntrada);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String uid = rs.getString("uid");
+                Timestamp fechaEntrada = rs.getTimestamp("ultima_fecha");
+
+                LocalDateTime fechaEntradaLDT = fechaEntrada.toLocalDateTime();
+                LocalDateTime ahora = LocalDateTime.now();
+
+                // si el fichaje fue ayer o antes, o si es hoy pero han pasado las 23:00
+                if (fechaEntradaLDT.toLocalDate().isBefore(ahora.toLocalDate()) ||
+                        (fechaEntradaLDT.toLocalDate().equals(ahora.toLocalDate()) && ahora.getHour() >= 23)) {
+
+                    // generar fecha de salida el mismo dia a las 23.00
+                    LocalDateTime salidaAuto = fechaEntradaLDT.toLocalDate().atTime(23, 0, 0);
+                    String insertarSalida = "INSERT INTO registro (uid, fecha, tipo) VALUES (?, ?, 'salida')";
+
+                    try (PreparedStatement insertStmt = conn.prepareStatement(insertarSalida)) {
+                        insertStmt.setString(1, uid);
+                        insertStmt.setTimestamp(2, Timestamp.valueOf(salidaAuto));
+                        insertStmt.executeUpdate();
+
+                        System.out.println("[debug] Salida auto añadida para UID " + uid + " a las " + salidaAuto);
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
