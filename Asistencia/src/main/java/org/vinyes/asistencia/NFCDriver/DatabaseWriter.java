@@ -17,10 +17,10 @@ public class DatabaseWriter {
         String uid = csvList[0];
         String nombre = csvList[1];
         String fecha = csvList[2];
-        String tipo = csvList[3].equals("true") ? "entrada" : "sortida";
+        String tipo = csvList[3].equals("true") ? "entrat" : "sortit";
 
         // Escribir en archivo de texto
-        escribirEnArchivo("fichaje.txt", "Professor: " + nombre + " ha " + tipo + " entrat a les " + fecha + ", amb identificador: " + uid);
+        escribirEnArchivo("fichaje.txt", "Professor: " + nombre + " ha " + tipo + " a les " + fecha + ", amb identificador: " + uid);
 
         // Escribir en CSV
         escribirEnArchivo("database.csv", String.join(",", uid, nombre, fecha, tipo));

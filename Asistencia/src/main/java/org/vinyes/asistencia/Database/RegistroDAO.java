@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RegistroDAO {
-    private static Usuario noUser = new Usuario(null, "Usuario sin identificar", null);
+    private static Usuario noUser = new Usuario(null, "Usuari no identificat", null);
     public static void insertarRegistro(String uid, String fecha, String tipo) {
         System.out.println("Registro esto: " + uid + ","+fecha+","+tipo);
         String sql = "INSERT INTO registro (uid, fecha, tipo) VALUES (?, ?, ?)";
@@ -60,7 +60,7 @@ public class RegistroDAO {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                return rs.getString("tipo").equals("entrada"); // Devuelve true si el último fichaje fue entrada
+                return rs.getString("tipo").equals("entrat"); // Devuelve true si el último fichaje fue entrada
             }
         } catch (SQLException e) {
             e.printStackTrace();
