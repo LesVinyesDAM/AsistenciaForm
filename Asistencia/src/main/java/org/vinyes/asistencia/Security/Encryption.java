@@ -39,12 +39,15 @@ public class Encryption {
     }
 
     // registramos el usuario tambien de manera hardcodeada buff
-    private static final String ucrypt = "ZFmETBB6ITBl/5Sr2Oi+sw==";
-    private static final String pcrypt = "wlbGlVvchPMotlmtNfnzJg==";
+    private static final String ucrypt1 = "ZFmETBB6ITBl/5Sr2Oi+sw==";
+    private static final String pcrypt1 = "wlbGlVvchPMotlmtNfnzJg==";
+
+    private static final String ucrypt2 = "ZFmETBB6ITBl/5Sr2Oi+sw==";
+    private static final String pcrypt2 = "s33Htt8ajEiiUAG1rj0LVw==";
 
     public static boolean validateCredentials(String inputUser, String inputPass) {
-        String decryptedUser = decrypt(ucrypt);
-        String decryptedPass = decrypt(pcrypt);
+        String decryptedUser = decrypt(ucrypt1);
+        String decryptedPass = decrypt(pcrypt1);
 
         return decryptedUser.equals(inputUser) && decryptedPass.equals(inputPass);
     }

@@ -76,7 +76,7 @@ public class NFCReader {
                             } else {
                                 System.out.println("Esta el usuario fichado? - " + user.isFichado());
                                 user.setFichado(!user.isFichado());
-                                cardInfo.set("Fitxatge de " + (user.isFichado() ? "entrada" : "salida") + ": " + user.getNombreCompleto() + " del departament: " + user.getDepartamento() +
+                                cardInfo.set("Fitxatge de " + (user.isFichado() ? "entrada" : "sortida") + ": " + user.getNombreCompleto() + " del departament: " + user.getDepartamento() +
                                         "\nA les: " + sdf.format(date) + "\nRetireu el clauer/tarjeta.");
                                 String csv = SUID + "," + user.getNombreCompleto() + "," + sdf.format(date) + ","+ user.isFichado();
                                 dw.escribirNuevaLinea(csv); // se escribe a la bbdd
