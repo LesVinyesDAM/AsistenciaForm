@@ -38,14 +38,14 @@ public class RegisterController {
 
         if (!uuid.isEmpty() && !nombre.isEmpty() && !departamento.isEmpty()) {
             if (RegistroDAO.existeUsuario(uuid)) {
-                textboxHelper("Registro", "La tarjeta ya está registrada.", Alert.AlertType.ERROR);
+                textboxHelper("Registre", "El dispositiu ja es registrat.", Alert.AlertType.ERROR);
             } else {
                 Usuario nuevoUsuario = new Usuario(uuid, nombre, departamento);
                 RegistroDAO.registrarUsuarioEnBD(nuevoUsuario);
-                textboxHelper("Registro", "Registro exitoso!", Alert.AlertType.CONFIRMATION);
+                textboxHelper("Registre", "Registre realitzat!", Alert.AlertType.CONFIRMATION);
             }
         } else {
-            textboxHelper("Registro", "Todos los campos son obligatorios.", Alert.AlertType.WARNING);
+            textboxHelper("Registre", "Tots els camps son obligatoris.", Alert.AlertType.WARNING);
         }
     }
 

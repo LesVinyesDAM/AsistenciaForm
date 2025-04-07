@@ -33,6 +33,7 @@ public class FirstScreenController {
     private void readCards() {
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
             // logica para ir leyendo cada 1 segundos un llavero, tarjeta...
+            // TEST
             onUpdateText.setText("Esperando tarjeta...\nSegundos pasados desde la ejecucion: " + ++v);
         }));
 

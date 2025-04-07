@@ -13,7 +13,7 @@ import java.util.List;
 
 public class NFCReader {
     private static final String EXPECTED_MODEL = "ACS ACR122 0";
-    private final StringProperty cardInfo = new SimpleStringProperty("Esperando llavero/tarjeta...");
+    private final StringProperty cardInfo = new SimpleStringProperty("Esperant clauer/tarjeta...");
     private volatile boolean keepRunning = true;  // flag para controlar el hilo
 
     public StringProperty cardInfoProperty() {
@@ -40,13 +40,13 @@ public class NFCReader {
                     List<CardTerminal> terminales = lectores.list();
 
                     if (terminales.isEmpty()) {
-                        Platform.runLater(() -> cardInfo.set("No hay lectores disponibles."));
+                        Platform.runLater(() -> cardInfo.set("No hi han lectors disponibles"));
                         Thread.sleep(1000);
                         continue;
                     }
 
                     CardTerminal lector = terminales.get(0);
-                    Platform.runLater(() -> cardInfo.set("Esperando llavero/tarjeta..."));
+                    Platform.runLater(() -> cardInfo.set("Esperant clauer/tarjeta..."));
 
                     if (!lector.waitForCardPresent(1000)) {
                         continue;  // si no hay tarjeta, vuelve a empezar el loop
@@ -62,7 +62,7 @@ public class NFCReader {
 
                     Platform.runLater(() -> {
                         if (SUID.isEmpty()) {
-                            cardInfo.set("Error al leer el llavero/tarjeta.");
+                            cardInfo.set("Error al llegir el clauer/tarjeta.");
                         } else {
                             Usuario user = RegistroDAO.obtenerUsuarioPorSUID(SUID);
 
@@ -76,8 +76,8 @@ public class NFCReader {
                             } else {
                                 System.out.println("Esta el usuario fichado? - " + user.isFichado());
                                 user.setFichado(!user.isFichado());
-                                cardInfo.set("Fichaje de " + (user.isFichado() ? "entrada" : "salida") + ": " + user.getNombreCompleto() + " del departament: " + user.getDepartamento() +
-                                        "\nA las: " + sdf.format(date) + "\nRetire el llavero/tarjeta.");
+                                cardInfo.set("Fitxatge de " + (user.isFichado() ? "entrada" : "salida") + ": " + user.getNombreCompleto() + " del departament: " + user.getDepartamento() +
+                                        "\nA les: " + sdf.format(date) + "\nRetireu el clauer/tarjeta.");
                                 String csv = SUID + "," + user.getNombreCompleto() + "," + sdf.format(date) + ","+ user.isFichado();
                                 dw.escribirNuevaLinea(csv); // se escribe a la bbdd
                             }
@@ -88,7 +88,7 @@ public class NFCReader {
                     tarjeta.disconnect(false);
                     lector.waitForCardAbsent(0);
                 } catch (Exception e) {
-                    Platform.runLater(() -> cardInfo.set("Lector no encontrado, conecte uno."));
+                    Platform.runLater(() -> cardInfo.set("Lector no trobat, conecteu un."));
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException ignored) {}

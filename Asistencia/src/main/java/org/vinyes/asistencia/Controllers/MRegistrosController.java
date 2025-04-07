@@ -12,7 +12,7 @@ public class MRegistrosController {
         ObservableList<String> registros = RegistroDAO.obtenerRegistrosPorUsuario(uuid);
 
         if (registros.isEmpty()) {
-            textAreaUsuario.setText("No hay registros disponibles para este usuario.");
+            textAreaUsuario.setText("No hi han registres disponibles per aquest usuari.");
         } else {
             StringBuilder texto = new StringBuilder();
             registros.forEach(registro -> texto.append(registro).append("\n"));

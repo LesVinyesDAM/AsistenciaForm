@@ -8,14 +8,14 @@
             prefHeight="400.0" prefWidth="600.0">
 
     <MenuBar AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
-        <Menu text="Gestión">
-            <MenuItem text="Registrar usuarios" onAction="#handleRegistrarUsuarios"/>
-            <MenuItem text="Modificar usuarios" onAction="#handleModificarUsuarios"/>
+        <Menu text="Gestió">
+            <MenuItem text="Registrar usuaris" onAction="#handleRegistrarUsuarios"/>
+            <MenuItem text="Modificar usuaris" onAction="#handleModificarUsuarios"/>
             <MenuItem text="Exportar CSV" onAction="#handleExportarCSV"/>
         </Menu>
     </MenuBar>
 
-    <Label layoutX="20.0" layoutY="60.0" text="Registros realizados:" />
+    <Label layoutX="20.0" layoutY="60.0" text="Registres actuals:" />
     <TextArea fx:id="textAreaRegistros" layoutX="20.0" layoutY="90.0" prefWidth="560.0" prefHeight="300.0"
               editable="false" wrapText="true"/>
 

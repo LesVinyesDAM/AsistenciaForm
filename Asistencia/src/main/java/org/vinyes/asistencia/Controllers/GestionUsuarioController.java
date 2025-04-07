@@ -59,18 +59,18 @@ public class GestionUsuarioController {
     public void handleEliminarUsuario() {
         Usuario seleccionado = tablaUsuarios.getSelectionModel().getSelectedItem();
         if (seleccionado != null) {
-            Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION, "¿Seguro que deseas eliminar a " + seleccionado.getNombreCompleto() + "?", ButtonType.YES, ButtonType.NO);
+            Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION, "Esteu segurs que voleu eliminar a " + seleccionado.getNombreCompleto() + "?", ButtonType.YES, ButtonType.NO);
             confirmacion.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.YES) {
                     RegistroDAO.eliminarUsuario(seleccionado.getUuid());
                     listaUsuarios.remove(seleccionado);
                     txtNombre.clear();
                     txtDepartamento.clear();
-                    System.out.println("Usuario eliminado: " + seleccionado.getNombreCompleto());
+                    System.out.println("Usuari eliminat: " + seleccionado.getNombreCompleto());
                 }
             });
         } else {
-            Alert alerta = new Alert(Alert.AlertType.WARNING, "Selecciona un usuario para eliminar.");
+            Alert alerta = new Alert(Alert.AlertType.WARNING, "Selecciona un usuari per eliminar.");
             alerta.show();
         }
     }
@@ -87,13 +87,13 @@ public class GestionUsuarioController {
                 seleccionado.setNombreCompleto(nuevoNombre);
                 seleccionado.setDepartamento(nuevoDepartamento);
                 tablaUsuarios.refresh();
-                System.out.println("Usuario actualizado: " + nuevoNombre);
+                System.out.println("Usuari actualitzat: " + nuevoNombre);
             } else {
-                Alert alerta = new Alert(Alert.AlertType.WARNING, "Por favor, ingresa un nombre y un departamento.");
+                Alert alerta = new Alert(Alert.AlertType.WARNING, "Siusplau, introduiu un nom i departament.");
                 alerta.show();
             }
         } else {
-            Alert alerta = new Alert(Alert.AlertType.WARNING, "Selecciona un usuario para modificar.");
+            Alert alerta = new Alert(Alert.AlertType.WARNING, "Seleccioneu un usuari per modificar.");
             alerta.show();
         }
     }
@@ -108,7 +108,7 @@ public class GestionUsuarioController {
             controller.cargarRegistrosUsuario(seleccionado.getUuid());
 
             Stage stage = new Stage();
-            stage.setTitle("Registros de " + seleccionado.getNombreCompleto());
+            stage.setTitle("Registres de " + seleccionado.getNombreCompleto());
             stage.setScene(new Scene(root));
             stage.show();
 

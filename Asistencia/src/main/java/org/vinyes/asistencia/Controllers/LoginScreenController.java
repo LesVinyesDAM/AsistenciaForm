@@ -43,7 +43,7 @@ public class LoginScreenController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/vinyes/asistencia/usuarios-screen.fxml"));
                 Parent root = loader.load();
                 Stage stage = new Stage();
-                stage.setTitle("Usuarios");
+                stage.setTitle("Usuaris");
                 stage.setScene(new Scene(root));
                 stage.show();
 
@@ -57,7 +57,7 @@ public class LoginScreenController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Login Error");
             alert.setHeaderText(null);
-            alert.setContentText("Usuario o contraseña incorrectos");
+            alert.setContentText("Usuari o contrasenya incorrectes");
             alert.showAndWait();
         }
     }

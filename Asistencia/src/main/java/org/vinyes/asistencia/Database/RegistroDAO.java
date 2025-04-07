@@ -199,7 +199,7 @@ public class RegistroDAO {
                         .append(rs.getString("tipo") + "\n");
             }
 
-            System.out.println("Exportación completada: " + archivo.getAbsolutePath());
+            System.out.println("Exportació completada: " + archivo.getAbsolutePath());
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }

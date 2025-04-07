@@ -38,7 +38,7 @@ public class UsuariosScreenController {
                 setupTextbox(linea);
             }
         } catch (IOException e) {
-            setupTextbox("No se pudo leer el archivo.");
+            setupTextbox("No s'ha pogut llegir l'archiu.");
             System.out.print("Error: " + e.getMessage());
         }
     }
@@ -47,7 +47,7 @@ public class UsuariosScreenController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/vinyes/asistencia/register-screen.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
-        stage.setTitle("Gestion usuarios");
+        stage.setTitle("Gestió usuaris");
         stage.setScene(new Scene(root));
         stage.show();
     }
@@ -56,7 +56,7 @@ public class UsuariosScreenController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/vinyes/asistencia/gestion-screen.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
-        stage.setTitle("Gestion usuarios");
+        stage.setTitle("Gestió usuaris");
         stage.setScene(new Scene(root));
         stage.show();
     }
@@ -64,7 +64,7 @@ public class UsuariosScreenController {
     public void handleExportarCSV() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Guardar CSV");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivo CSV", "*.csv"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archiu CSV", "*.csv"));
         File archivo = fileChooser.showSaveDialog(null);
 
         if (archivo != null) {
