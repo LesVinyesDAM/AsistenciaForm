@@ -1,47 +1,26 @@
-11887F02,HELLO WORLD,2025-03-28 11:29:59,entrada
-11887F02,HELLO WORLD,2025-03-28 11:30:38,entrada
-556C7F02,joe,2025-03-28 11:30:44,entrada
-B3765140,Thomas D,2025-03-31 10:26:17,salida
-B3765140,Thomas D,2025-03-31 10:26:25,entrada
-B3765140,Thomas D,2025-03-31 10:26:27,salida
-53004D40,Alex Martin,2025-03-31 10:49:19,salida
-B3010840,John Doe,2025-03-31 11:15:30,salida
-93176A40,Usuario sin identificar,2025-03-31 11:56:01,entrada
-93176A40,Usuario sin identificar,2025-03-31 11:57:24,salida
-93176A40,Prueba0 Test,2025-03-31 11:57:43,entrada
-93176A40,Prueba0 Test,2025-03-31 11:57:46,salida
-93176A40,XD,2025-03-31 12:12:15,entrada
-B3010840,John Doe,2025-03-31 12:13:45,entrada
-93176A40,Usuario sin identificar,2025-03-31 12:13:48,entrada
-13A66940,Joaquin Perez,2025-03-31 12:13:55,salida
-13A66940,Joaquin Perez,2025-03-31 12:13:57,entrada
-53004D40,Alex Martin,2025-03-31 12:14:00,entrada
-53004D40,Alex Martin,2025-03-31 12:14:04,salida
-53004D40,Alex Martin,2025-03-31 12:14:06,entrada
-B3765140,Thomas D,2025-03-31 12:14:09,entrada
-23CB3F40,Sancho Leon,2025-03-31 12:14:13,salida
-23CB3F40,Sancho Leon,2025-03-31 12:14:18,entrada
-23CB3F40,Sancho Leon,2025-03-31 12:14:21,salida
-23CB3F40,Sancho Leon,2025-03-31 12:14:29,entrada
-23CB3F40,Sancho Leon,2025-03-31 12:14:31,salida
-B3765140,Thomas D,2025-03-31 12:14:34,salida
-B3765140,Thomas D,2025-03-31 12:14:37,entrada
-B3765140,Thomas D,2025-03-31 12:14:41,salida
-B3765140,Thomas D,2025-03-31 12:14:43,entrada
-B3765140,Thomas D,2025-03-31 12:14:51,salida
-13A66940,Joaquin Perez,2025-03-31 12:23:31,salida
-13A66940,Joaquin Perez,2025-03-31 12:23:34,entrada
-B3765140,Thomas D,2025-03-31 12:23:46,entrada
-B3765140,Thomas D,2025-03-31 12:29:54,salida
-13A66940,Joaquin Perez,2025-03-31 12:30:30,salida
-B3010840,John Doe,2025-03-31 12:30:33,salida
-B3010840,JOHN DOE LOOOL,2025-03-31 12:31:03,entrada
-B3010840,JOHN DOE LOOOL,2025-03-31 12:31:07,salida
-B3010840,LOL,2025-03-31 12:31:20,entrada
-B3010840,Usuario sin identificar,2025-03-31 12:31:37,entrada
-B3010840,Usuario sin identificar,2025-03-31 12:32:05,salida
-B3010840,Usuario sin identificar,2025-03-31 12:32:06,entrada
-B3010840,John Doe,2025-03-31 12:32:38,salida
-B3010840,John Doe,2025-03-31 12:32:45,entrada
-B3010840,John Doe,2025-04-04 11:05:20,salida
-13A66940,Joaquin Perez,2025-04-04 11:13:52,entrada
+B3765140,Usuari no identificat,2025-04-07 11:36:34,entrat
+B3765140,Usuari no identificat,2025-04-07 11:37:06,sortit
+B3765140,Usuari no identificat,2025-04-07 11:37:50,entrat
+23CB3F40,Usuari no identificat,2025-04-07 11:38:51,sortit
+53004D40,Usuari no identificat,2025-04-07 11:39:11,entrat
+438B5A40,Usuari no identificat,2025-04-07 11:39:48,sortit
+B3010840,Usuari no identificat,2025-04-07 11:40:16,entrat
+B3010840,Usuari no identificat,2025-04-07 11:40:26,sortit
+13A66940,Usuari no identificat,2025-04-07 11:40:47,entrat
+B3010840,John Doe,2025-04-07 11:53:16,entrat
+B3765140,Thomas D,2025-04-07 11:53:19,sortit
+B3765140,Thomas D,2025-04-07 11:53:22,entrat
+13A66940,Joaquin Perez,2025-04-07 11:53:24,sortit
+13A66940,Joaquin Perez,2025-04-07 11:53:27,entrat
+23CB3F40,Alex Martin,2025-04-07 11:53:30,entrat
+438B5A40,Sancho Leon,2025-04-07 11:53:33,entrat
+438B5A40,Sancho Leon,2025-04-07 11:53:37,sortit
+23CB3F40,Alex Martin,2025-04-07 11:55:17,sortit
+438B5A40,Usuari no identificat,2025-04-09 10:03:26,entrat
+438B5A40,John Doe,2025-04-09 10:06:06,sortit
+438B5A40,John Doe,2025-04-09 10:06:22,entrat
+438B5A40,John Doe,2025-04-09 10:07:28,sortit
+13A66940,Usuari no identificat,2025-04-09 10:44:05,entrat
+53004D40,Usuari no identificat,2025-04-09 10:44:35,sortit
+93176A40,Usuari no identificat,2025-04-09 10:44:55,entrat
+13A66940,Clauer 1,2025-04-09 10:47:22,sortit
