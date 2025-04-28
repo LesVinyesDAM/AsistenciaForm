@@ -16,7 +16,6 @@ public class RegisterController {
     @FXML private TextField surnameField;
     @FXML private TextField departmentField;
     @FXML private Button cerrarButton;
-    @FXML private Button registerButton;
 
     @FXML
     public void initialize() {

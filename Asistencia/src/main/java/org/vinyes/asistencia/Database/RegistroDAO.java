@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -204,16 +205,17 @@ public class RegistroDAO {
     }
 
     public static void corregirFichajesOlvidados() {
+        System.out.println("[debug] iniciando autosalidas");
+
         String sqlUsuariosConEntrada = """
-        SELECT r.uid, MAX(r.fecha) as ultima_fecha
-        FROM registro r
-        WHERE r.tipo = 'entrada'
-        AND NOT EXISTS (
-            SELECT 1 FROM registro r2
-            WHERE r2.uid = r.uid
-            AND r2.fecha > r.fecha
-        )
-        GROUP BY r.uid
+        SELECT r1.uid, r1.fecha
+        FROM registro r1
+        INNER JOIN (
+            SELECT uid, MAX(fecha) as ultima_fecha
+            FROM registro
+            GROUP BY uid
+        ) r2 ON r1.uid = r2.uid AND r1.fecha = r2.ultima_fecha
+        WHERE r1.tipo = 'entrat'
         """;
 
         try (Connection conn = DatabaseConnection.getConnection();
@@ -222,18 +224,21 @@ public class RegistroDAO {
 
             while (rs.next()) {
                 String uid = rs.getString("uid");
-                Timestamp fechaEntrada = rs.getTimestamp("ultima_fecha");
+                Timestamp fechaEntrada = rs.getTimestamp("fecha");
+
+                int hora = 23, minutos = 0, segundos = 0;
 
                 LocalDateTime fechaEntradaLDT = fechaEntrada.toLocalDateTime();
                 LocalDateTime ahora = LocalDateTime.now();
+                LocalTime horaActual = ahora.toLocalTime();
+                LocalTime horaCorte = LocalTime.of(hora, minutos); // HORA DE PRUEBA
 
-                // si el fichaje fue ayer o antes, o si es hoy pero han pasado las 23:00
                 if (fechaEntradaLDT.toLocalDate().isBefore(ahora.toLocalDate()) ||
-                        (fechaEntradaLDT.toLocalDate().equals(ahora.toLocalDate()) && ahora.getHour() >= 23)) {
+                        (fechaEntradaLDT.toLocalDate().equals(ahora.toLocalDate()) && horaActual.isAfter(horaCorte))) {
 
-                    // generar fecha de salida el mismo dia a las 23.00
-                    LocalDateTime salidaAuto = fechaEntradaLDT.toLocalDate().atTime(23, 0, 0);
-                    String insertarSalida = "INSERT INTO registro (uid, fecha, tipo) VALUES (?, ?, 'salida')";
+                    LocalDateTime salidaAuto = fechaEntradaLDT.toLocalDate().atTime(hora, minutos, segundos);
+
+                    String insertarSalida = "INSERT INTO registro (uid, fecha, tipo) VALUES (?, ?, 'sortit')";
 
                     try (PreparedStatement insertStmt = conn.prepareStatement(insertarSalida)) {
                         insertStmt.setString(1, uid);

@@ -25,6 +25,6 @@ public class RegistroScheduler {
 
         scheduler.scheduleAtFixedRate(tarea, delayInicial, intervalo24h, TimeUnit.MILLISECONDS);
 
-        System.out.println("[debug] correccion automatica de fichajes programada a las 23:00.");
+        System.out.println("[debug] Inicio de salidas programada a las 23:00.");
     }
 }

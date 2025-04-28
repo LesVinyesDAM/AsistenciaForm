@@ -24,3 +24,32 @@ Professor: Usuari no identificat ha entrat a les 2025-04-09 10:44:05, amb identi
 Professor: Usuari no identificat ha sortit a les 2025-04-09 10:44:35, amb identificador: 53004D40
 Professor: Usuari no identificat ha entrat a les 2025-04-09 10:44:55, amb identificador: 93176A40
 Professor: Clauer 1 ha sortit a les 2025-04-09 10:47:22, amb identificador: 13A66940
+Professor: Usuari no identificat ha entrat a les 2025-04-28 09:35:17, amb identificador: B3765140
+Professor: Thomas Dragutan ha sortit a les 2025-04-28 09:35:44, amb identificador: B3765140
+Professor: Thomas Dragutan ha entrat a les 2025-04-28 09:35:47, amb identificador: B3765140
+Professor: Thomas Dragutan ha sortit a les 2025-04-28 09:35:51, amb identificador: B3765140
+Professor: Thomas Dragutan ha entrat a les 2025-04-28 09:40:07, amb identificador: B3765140
+Professor: Thomas Dragutan ha sortit a les 2025-04-28 09:41:43, amb identificador: B3765140
+Professor: Thomas Dragutan ha entrat a les 2025-04-28 10:13:30, amb identificador: B3765140
+Professor: Thomas Dragutan ha sortit a les 2025-04-28 10:15:19, amb identificador: B3765140
+Professor: Thomas Dragutan ha entrat a les 2025-04-28 10:31:09, amb identificador: B3765140
+Professor: Clauer 2 ha entrat a les 2025-04-28 10:31:13, amb identificador: 53004D40
+Professor: John Doe ha entrat a les 2025-04-28 10:31:19, amb identificador: 438B5A40
+Professor: Usuari no identificat ha entrat a les 2025-04-28 10:31:29, amb identificador: B3010840
+Professor: Usuari no identificat ha sortit a les 2025-04-28 10:31:33, amb identificador: 03223C40
+Professor: Usuari no identificat ha entrat a les 2025-04-28 10:38:30, amb identificador: F39C6B40
+Professor: Usuari no identificat ha sortit a les 2025-04-28 10:38:33, amb identificador: 03223C40
+Professor: John Doe ha sortit a les 2025-04-28 10:38:37, amb identificador: 438B5A40
+Professor: Usuari no identificat ha entrat a les 2025-04-28 10:38:41, amb identificador: B3010840
+Professor: Usuari no identificat ha sortit a les 2025-04-28 10:38:44, amb identificador: B3010840
+Professor: Usuari no identificat ha entrat a les 2025-04-28 10:38:47, amb identificador: F39C6B40
+Professor: John Doe ha entrat a les 2025-04-28 10:38:50, amb identificador: 438B5A40
+Professor: Usuari no identificat ha sortit a les 2025-04-28 10:38:54, amb identificador: 03223C40
+Professor: Thomas Dragutan ha sortit a les 2025-04-28 10:38:57, amb identificador: B3765140
+Professor: Thomas Dragutan ha entrat a les 2025-04-28 10:39:00, amb identificador: B3765140
+Professor: Clauer 2 ha sortit a les 2025-04-28 10:39:03, amb identificador: 53004D40
+Professor: Clauer 2 ha entrat a les 2025-04-28 10:39:08, amb identificador: 53004D40
+Professor: John Doe ha entrat a les 2025-04-28 10:43:15, amb identificador: 438B5A40
+Professor: Clauer 2 ha entrat a les 2025-04-28 10:43:19, amb identificador: 53004D40
+Professor: Thomas Dragutan ha entrat a les 2025-04-28 10:43:26, amb identificador: B3765140
+Professor: Clauer 2 ha entrat a les 2025-04-28 10:51:28, amb identificador: 53004D40
